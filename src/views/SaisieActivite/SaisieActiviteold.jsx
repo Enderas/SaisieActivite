@@ -60,7 +60,7 @@ class SaisieActivite extends React.Component {
   setDateReturn = (dateReturn) => this.setState({ dateReturn });
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/activities_days')
+    fetch('http://localhost:3000/api/activities_day')
     .then(results => {
       return results.json();
     }).then(data => {
