@@ -15,6 +15,7 @@ import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import SaisiePermission from "views/SaisiePermission/SaisiePermission.jsx";
 import SaisieActivite from "views/SaisieActivite/SaisieActivite.jsx";
+import GestionReferentiel from "views/GestionReferentiel/GestionReferentiel.jsx";
 
 const recueilActivitesRoutes = [
   {
@@ -36,6 +37,13 @@ const recueilActivitesRoutes = [
     name: "Ordre de mission",
     icon: "commute",
     component: DashboardPage,
+    layout: "/recueil-activite"
+  },
+  {
+    path: "/gestion-referentiels",
+    name: "Gestion des référentiels",
+    icon: "style",
+    component: GestionReferentiel,
     layout: "/recueil-activite"
   },
   {
