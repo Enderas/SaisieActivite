@@ -9,10 +9,7 @@ import People from "@material-ui/icons/People";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
-import Tasks from "components/Tasks/Tasks.jsx";
-import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-
-import { bugs, website, server } from "variables/general.jsx";
+import TableWithActions from "components/TableWithActions/TableWithActions.jsx";
 
 import {} from "variables/charts.jsx";
 
@@ -24,54 +21,37 @@ class GestionReferentiel extends React.Component {
   };
   handleChange = (event, value) => {
     this.setState({ value });
+    console.log('Value : ' + value);
   };
 
   handleChangeIndex = index => {
     this.setState({ value: index });
+    console.log('Index : ' + index);
   };
+
   render() {
     return (
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
-            <CustomTabs
+            <TableWithActions
               title="Référentiels:"
               headerColor="primary"
               tabs={[
                 {
+                  tabName: "Services",
+                  tabIcon: People,
+                },
+                {
                   tabName: "Activités",
                   tabIcon: Pool,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[0, 3]}     // Rows initially checked
-                      tasksIndexes={[0, 1, 2, 3]} // Initial order of elements
-                      tasks={bugs}
-                    />
-                  )
-                },
+               },
                 {
                   tabName: "Utilisateurs",
                   tabIcon: Face,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[0]}
-                      tasksIndexes={[0, 1]}
-                      tasks={website}
-                    />
-                  )
-                },
-                {
-                  tabName: "Services",
-                  tabIcon: People,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[1]}
-                      tasksIndexes={[0, 1, 2]}
-                      tasks={server}
-                    />
-                  )
                 }
               ]}
+              tableHeaderColor="primary"
             />
           </GridItem>
         </GridContainer>

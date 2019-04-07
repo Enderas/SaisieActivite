@@ -9,7 +9,12 @@ import {
   defaultFont
 } from "assets/jss/material-dashboard-react.jsx";
 
-const tableStyle = theme => ({
+import tooltipStyle from "assets/jss/material-dashboard-react/tooltipStyle.jsx";
+import checkboxAdnRadioStyle from "assets/jss/material-dashboard-react/checkboxAdnRadioStyle.jsx";
+
+const referencesStyle = theme => ({
+  ...tooltipStyle,
+  ...checkboxAdnRadioStyle,
   warningTableHeader: {
     color: warningColor[0]
   },
@@ -63,4 +68,4 @@ const tableStyle = theme => ({
   }
 });
 
-export default tableStyle;
+export default referencesStyle;
