@@ -4,6 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import ListSubheader from "@material-ui/core/ListSubheader";
+import CardContent from "@material-ui/core/CardContent";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -11,10 +12,9 @@ import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import CardContent from "@material-ui/core/CardContent";
 import CardFooter from "components/Card/CardFooter.jsx";
 
-import DateFnsUtils from "@date-io/date-fns";
+// import DateFnsUtils from "@date-io/date-fns";
 
 const styles = {
   cardCategoryWhite: {
@@ -65,7 +65,6 @@ class SaisieActivite extends React.Component {
       return results.json();
     }).then(data => {
       this.setState({tileData: data});
-      console.log(this.state.tileData);
     });
   }
 

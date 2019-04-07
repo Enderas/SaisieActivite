@@ -1,10 +1,10 @@
 {
-  "name": "recueil-activite-ihm",
-  "homepage": "https://github.com/a git project",
+  "name": "saisie-activite-ihm",
+  "homepage": "https://github.com/Enderas/SaisieActiviteIHM",
   "authors": [
     "ESIOC"
   ],
-  "description": "Recueil d'activité",
+  "description": "Saisie d'activité",
   "main": "public/index.html",
   "keywords": [
     "material",
@@ -15,7 +15,7 @@
     "google",
     "twitter"
   ],
-  "license": "Creative TIM License",
+  "license": "MIT License",
   "ignore": [
     "**/.*",
     "node_modules",

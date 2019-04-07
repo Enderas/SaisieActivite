@@ -1,7 +1,7 @@
 {
-  "name": "recueil-activite-IHM",
+  "name": "saisie-activite-ihm",
   "version": "0.0.1",
-  "description": "Recueil d'activité",
+  "description": "Saisie d'activité",
   "private": false,
   "main": "dist/index.js",
   "dependencies": {
@@ -22,7 +22,8 @@
     "react-google-maps": "9.4.5",
     "react-router-dom": "4.3.1",
     "react-scripts": "2.1.5",
-    "react-swipeable-views": "0.13.1"
+    "react-swipeable-views": "0.13.1",
+    "sha3": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,15 +38,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/a git project.git"
+    "url": "git+https://github.com/Enderas/SaisieActiviteIHM.git"
   },
   "keywords": [],
   "author": "ESIOC",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/a git project/issues"
+    "url": "https://github.com/Enderas/SaisieActiviteIHM/issues"
   },
-  "homepage": "https://recueil-activite/#/dashboard",
+  "homepage": "http://localhost:3001/recueil-activite/saisie-activite",
   "optionalDependencies": {
     "@types/googlemaps": "3.30.16",
     "@types/markerclustererplus": "2.1.33",

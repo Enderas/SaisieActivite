@@ -30,7 +30,6 @@ class GestionReferentiel extends React.Component {
     this.setState({ value: index });
   };
   render() {
-    const { classes } = this.props;
     return (
       <div>
         <GridContainer>

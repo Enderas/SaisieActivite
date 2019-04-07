@@ -48,7 +48,7 @@ class SaisiePermission extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <GridContainer>
+        <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={8}>
             <Card className={classes.divSmall}>
               <CardHeader color="primary">
@@ -66,6 +66,7 @@ class SaisiePermission extends React.Component {
                     <GridItem xs={12} sm={12} md={6}>
                       <DatePicker
                         id="dayLeaving"
+                        autoFocus
                         margin="normal"
                         label="Jour du départ"
                         format="dd/MM/yyyy"

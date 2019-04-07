@@ -11,7 +11,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
 // core components
-import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.jsx";
+// import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.jsx";
 
 import sidebarStyle from "assets/jss/material-dashboard-react/components/sidebarStyle.jsx";
 
@@ -91,10 +91,11 @@ const Sidebar = ({ ...props }) => {
           }}
         >
           {brand}
-          <div className={classes.sidebarWrapper}>
+          {/* Links to Admin NavBar are disabled here, because they create the component to be mounting twice with the normal NavBar */}
+          {/* <div className={classes.sidebarWrapper}>
             {<AdminNavbarLinks />}
             {links}
-          </div>
+          </div> */}
           {image !== undefined ? (
             <div
               className={classes.background}
