@@ -45,11 +45,23 @@ class GestionReferentiel extends React.Component {
                 {
                   tabName: "Activités",
                   tabIcon: Pool,
-               },
+                },
                 {
                   tabName: "Utilisateurs",
                   tabIcon: Face,
-                }
+                },
+                {
+                  tabName: "Grades",
+                  tabIcon: Pool,
+                },
+                {
+                  tabName: "Profils",
+                  tabIcon: Pool,
+                },
+                {
+                  tabName: "Jours chômés",
+                  tabIcon: Pool,
+                },
               ]}
               tableHeaderColor="primary"
             />

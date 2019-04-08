@@ -41,52 +41,62 @@ class References extends React.Component {
     });
   };
 
-  loadReferences = (query) => {
+  loadReferences = query => {
     // Call to a GET request of the corresponding repository
     fetch(process.env.REACT_APP_SERVICES_API_PREFIX + query, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Accept': 'application/json'
+        Accept: "application/json"
       }
-    }).then(results => {
-      return results.json();
-    }).then(data => {
+    })
+      .then(results => {
+        return results.json();
+      })
+      .then(data => {
+        // Extract the column names for table header
+        const tableHead = Object.keys(data[0]);
 
-      // Extract the column names for table header
-      const tableHead = Object.keys(data[0]);
+        // Extract data for table body
+        const tableData = [];
+        for (let i = 0; i < data.length; i++) {
+          const row = [];
+          tableHead.forEach(key => {
+            row.push(data[i][key]);
+          });
+          tableData.push(row);
+        }
 
-      // Extract data for table body
-      const tableData = [];
-      for (let i = 0; i < data.length; i++) {
-        const row = [];
-        tableHead.forEach(key => {
-          row.push(data[i][key]);
+        // Set extracted data to the state
+        this.setState({
+          tableHead: tableHead,
+          tableData: tableData
         });
-        tableData.push(row);
-      }
-
-      // Set extracted data to the state
-      this.setState({
-        tableHead: tableHead,
-        tableData: tableData
       });
-    });
-  }
+  };
 
   componentDidMount = () => {
     const { tabName } = this.props;
 
     // According to the selected repository, determine its call endpoint
     let query = "none";
-    switch(tabName){
+    switch (tabName) {
       // case "Activités":
       //   query = "activites";
       //   break;
       // case "Utilisateurs":
       //   query = "utilisateurs";
-      //   break;      
+      //   break;
       case "Services":
         query = "services";
+        break;
+      case "Grades":
+        query = "grades";
+        break;
+      case "Profils":
+        query = "profils";
+        break;
+      case "Jours chômés":
+        query = "jours_chomes";
         break;
       default:
         this.setState({
@@ -99,11 +109,11 @@ class References extends React.Component {
     if (query !== "none") {
       this.loadReferences(query);
     }
-  }
+  };
 
   render() {
     const { classes, tableHeaderColor } = this.props;
-    const tableCellClasses = classnames(classes.tableCell)
+    const tableCellClasses = classnames(classes.tableCell);
     return (
       <Table className={classes.table}>
         {this.state.tableHead !== undefined ? (
@@ -120,77 +130,81 @@ class References extends React.Component {
                   </TableCell>
                 );
               })}
-              <TableCell className={classes.tableCell + " " + classes.tableHeadCell}>
+              <TableCell
+                className={classes.tableCell + " " + classes.tableHeadCell}
+              >
                 Actions
               </TableCell>
             </TableRow>
           </TableHead>
         ) : null}
         <TableBody>
-          {this.state.tableData !== undefined ? (
-            this.state.tableData.map((prop, key) => {
-              return (
-                <TableRow key={key}>
-                  <TableCell className={tableCellClasses}>
-                    <Checkbox
-                      checked={this.state.checked.indexOf(prop) !== -1}
-                      tabIndex={-1}
-                      onClick={this.handleToggle(prop)}
-                      checkedIcon={<Check className={classes.checkedIcon} />}
-                      icon={<Check className={classes.uncheckedIcon} />}
-                      classes={{
-                        checked: classes.checked,
-                        root: classes.root
-                      }}
-                    />
-                  </TableCell>
-                  {prop.map((prop, key) => {
-                    return (
-                      <TableCell className={classes.tableCell} key={key}>
-                        {prop}
-                      </TableCell>
-                    );
-                  })}
-                  <TableCell className={classes.tableActions}>
-                    <Tooltip
-                      id="tooltip-top"
-                      title="Edite la référence"
-                      placement="top"
-                      classes={{ tooltip: classes.tooltip }}
-                    >
-                      <IconButton
-                        aria-label="Edit"
-                        className={classes.tableActionButton}
+          {this.state.tableData !== undefined
+            ? this.state.tableData.map((prop, key) => {
+                return (
+                  <TableRow key={key}>
+                    <TableCell className={tableCellClasses}>
+                      <Checkbox
+                        checked={this.state.checked.indexOf(prop) !== -1}
+                        tabIndex={-1}
+                        onClick={this.handleToggle(prop)}
+                        checkedIcon={<Check className={classes.checkedIcon} />}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        classes={{
+                          checked: classes.checked,
+                          root: classes.root
+                        }}
+                      />
+                    </TableCell>
+                    {prop.map((prop, key) => {
+                      return (
+                        <TableCell className={classes.tableCell} key={key}>
+                          {prop}
+                        </TableCell>
+                      );
+                    })}
+                    <TableCell className={classes.tableActions}>
+                      <Tooltip
+                        id="tooltip-top"
+                        title="Edite la référence"
+                        placement="top"
+                        classes={{ tooltip: classes.tooltip }}
                       >
-                        <Edit
-                          className={
-                            classes.tableActionButtonIcon + " " + classes.edit
-                          }
-                        />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip
-                      id="tooltip-top-start"
-                      title="Supprime la référence"
-                      placement="top"
-                      classes={{ tooltip: classes.tooltip }}
-                    >
-                      <IconButton
-                        aria-label="Close"
-                        className={classes.tableActionButton}
+                        <IconButton
+                          aria-label="Edit"
+                          className={classes.tableActionButton}
+                        >
+                          <Edit
+                            className={
+                              classes.tableActionButtonIcon + " " + classes.edit
+                            }
+                          />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip
+                        id="tooltip-top-start"
+                        title="Supprime la référence"
+                        placement="top"
+                        classes={{ tooltip: classes.tooltip }}
                       >
-                        <Close
-                          className={
-                            classes.tableActionButtonIcon + " " + classes.close
-                          }
-                        />
-                      </IconButton>
-                    </Tooltip>
-                  </TableCell>
-                </TableRow>
-              );
-            })
-          ) : null}
+                        <IconButton
+                          aria-label="Close"
+                          className={classes.tableActionButton}
+                        >
+                          <Close
+                            className={
+                              classes.tableActionButtonIcon +
+                              " " +
+                              classes.close
+                            }
+                          />
+                        </IconButton>
+                      </Tooltip>
+                    </TableCell>
+                  </TableRow>
+                );
+              })
+            : null}
         </TableBody>
       </Table>
     );
