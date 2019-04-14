@@ -10,6 +10,7 @@ import People from "@material-ui/icons/People";
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import TableWithActions from "components/TableWithActions/TableWithActions.jsx";
+import ReferenceServices from "components/References/ReferenceServices/ReferenceServices.jsx";
 
 import {} from "variables/charts.jsx";
 
@@ -17,6 +18,7 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 
 class GestionReferentiel extends React.Component {
   state = {
+    initialIdObject: '0',   // La fenêtre de saisie est en mode création tant que cette valeur = '0'. A remplacer avec l'identifiant de l'objet sélectionné
     value: 0
   };
   handleChange = (event, value) => {
@@ -33,7 +35,7 @@ class GestionReferentiel extends React.Component {
     return (
       <div>
         <GridContainer>
-          <GridItem xs={12} sm={12} md={6}>
+          <GridItem xs={12} lg={8}>
             <TableWithActions
               title="Référentiels:"
               headerColor="primary"
@@ -64,6 +66,11 @@ class GestionReferentiel extends React.Component {
                 },
               ]}
               tableHeaderColor="primary"
+            />
+          </GridItem>
+          <GridItem xs={12} lg={4}>
+            <ReferenceServices
+              initialIdObject={this.state.initialIdObject}
             />
           </GridItem>
         </GridContainer>
