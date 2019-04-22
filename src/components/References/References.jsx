@@ -111,6 +111,10 @@ class References extends React.Component {
     }
   };
 
+  handleEdit = value => () => {
+    this.props.handleSelectRef(value);
+  }
+
   render() {
     const { classes, tableHeaderColor } = this.props;
     const tableCellClasses = classnames(classes.tableCell);
@@ -173,6 +177,7 @@ class References extends React.Component {
                         <IconButton
                           aria-label="Edit"
                           className={classes.tableActionButton}
+                          onClick={this.handleEdit(prop)}
                         >
                           <Edit
                             className={

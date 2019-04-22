@@ -31,6 +31,10 @@ class GestionReferentiel extends React.Component {
     console.log('Index : ' + index);
   };
 
+  handleSelectRef = idSelected => {
+    this.setState({ initialIdObject: idSelected });
+  }
+
   render() {
     return (
       <div>
@@ -66,11 +70,12 @@ class GestionReferentiel extends React.Component {
                 },
               ]}
               tableHeaderColor="primary"
+              handleSelectRef={this.handleSelectRef}
             />
           </GridItem>
           <GridItem xs={12} lg={4}>
             <ReferenceServices
-              initialIdObject={this.state.initialIdObject}
+              idSelected={this.state.idSelected}
             />
           </GridItem>
         </GridContainer>

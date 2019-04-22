@@ -46,8 +46,8 @@ class ReferenceServices extends React.Component {
 
   constructor(props) {
     super(props);
-    if (props.initialIdObject) {
-      this.state.idObject = props.initialIdObject;
+    if (props.idSelected) {
+      this.state.idObject = props.idSelected;
     }
   }
 
@@ -112,7 +112,7 @@ class ReferenceServices extends React.Component {
       <Card className={classes.divSmall}>
         <CardHeader color="primary">
           <h4 className={classes.cardTitleWhite}>
-            {isCreate ? 'Création' : 'Mise à jour'}
+            Services : {isCreate ? 'Création' : 'Mise à jour'}
           </h4>
           <p className={classes.cardCategoryWhite}>
             Remplissez tous les champs obligatoires.

@@ -35,7 +35,8 @@ class TableWithActions extends React.Component {
       title,
       tableHead,
       tableData,
-      tableHeaderColor
+      tableHeaderColor,
+      handleSelectRef
     } = this.props;
     const cardTitle = classNames({
       [classes.cardTitle]: true
@@ -90,6 +91,7 @@ class TableWithActions extends React.Component {
                 tableHeaderColor={tableHeaderColor}
                 tableHead={tableHead}
                 tableData={tableData}
+                handleSelectRef={handleSelectRef}
               />
             }
             return null;
