@@ -18,21 +18,19 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 
 class GestionReferentiel extends React.Component {
   state = {
-    initialIdObject: '0',   // La fenêtre de saisie est en mode création tant que cette valeur = '0'. A remplacer avec l'identifiant de l'objet sélectionné
+    refSelected: '0',   // La fenêtre de saisie est en mode création tant que cette valeur = '0'. A remplacer avec l'identifiant de l'objet sélectionné
     value: 0
   };
   handleChange = (event, value) => {
     this.setState({ value });
-    console.log('Value : ' + value);
   };
 
   handleChangeIndex = index => {
     this.setState({ value: index });
-    console.log('Index : ' + index);
   };
 
-  handleSelectRef = idSelected => {
-    this.setState({ initialIdObject: idSelected });
+  handleSelectRef = refSelected => {
+    this.setState({ refSelected: refSelected });
   }
 
   render() {
@@ -75,7 +73,7 @@ class GestionReferentiel extends React.Component {
           </GridItem>
           <GridItem xs={12} lg={4}>
             <ReferenceServices
-              idSelected={this.state.idSelected}
+              refSelected={this.state.refSelected}
             />
           </GridItem>
         </GridContainer>

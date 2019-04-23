@@ -111,8 +111,8 @@ class References extends React.Component {
     }
   };
 
-  handleEdit = value => () => {
-    this.props.handleSelectRef(value);
+  handleEdit = refSelected => () => {
+    this.props.handleSelectRef(refSelected);
   }
 
   render() {

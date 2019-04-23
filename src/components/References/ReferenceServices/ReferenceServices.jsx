@@ -40,39 +40,36 @@ class ReferenceServices extends React.Component {
   };
 
   state = {
-    idObject: '0',
-    service: this.service
+    refSelected: null,
+    refresh: false
   };
 
   constructor(props) {
     super(props);
-    if (props.idSelected) {
-      this.state.idObject = props.idSelected;
-    }
+    this.state.refSelected = props.refSelected;
   }
 
-  componentDidMount() {
-    fetch(process.env.REACT_APP_SERVICES_API_PREFIX + 'services/' + this.state.idObject)
-    .then(results => {
-      return results.json();
-    }).then(data => {
-      this.service = {
-        idService: data['Id service'],
-        nomCourt: data['Nom  court'],
-        nomLong: data['Nom  long'],
-        niveau: data['Niveau']
-      };
-      this.setState({
-        service: this.service
-      });
-    });
+  componentDidUpdate(prevProps) {
+    if (this.props.refSelected !== prevProps.refSelected) {
+      if (this.props.refSelected !== "0") {
+        this.service = {
+          idService: this.props.refSelected[0],
+          nomCourt: this.props.refSelected[1],
+          nomLong: this.props.refSelected[2],
+          niveau: this.props.refSelected[3]
+        };
+        this.setState({
+          refresh: !this.state.refresh
+        });
+      }
+    }
   }
 
   getJsonBody() {
     return JSON.stringify({
-      'Nom  court': this.state.service.nomCourt,
-      'Nom long': this.state.service.nomLong,
-      'Niveau': this.state.service.niveau
+      'Nom  court': this.service.nomCourt,
+      'Nom long': this.service.nomLong,
+      'Niveau': this.service.niveau
     });
   }
 
@@ -107,7 +104,7 @@ class ReferenceServices extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const isCreate = this.state.idObject === '0' ? true : false;
+    const isCreate = this.state.refSelected === '0' ? true : false;
     return (
       <Card className={classes.divSmall}>
         <CardHeader color="primary">
@@ -125,7 +122,7 @@ class ReferenceServices extends React.Component {
                 id="nomCourt"
                 label="Libellé court"
                 required
-                value={this.state.service.nomCourt}
+                value={this.service.nomCourt || ''}
                 onChange={this.handleChange('nomCourt')}
                 className={
                   (classes.margin,
@@ -142,7 +139,7 @@ class ReferenceServices extends React.Component {
                 id="nomLong"
                 label="Libellé long"
                 required
-                value={this.state.service.nomLong}
+                value={this.service.nomLong || ''}
                 onChange={this.handleChange('nomLong')}
                 className={
                   (classes.margin,
@@ -159,7 +156,7 @@ class ReferenceServices extends React.Component {
                 id="niveau"
                 label="Niveau"
                 required
-                value={this.state.service.niveau}
+                value={this.service.niveau || ''}
                 onChange={this.handleChange('niveau')}
                 type="number"
                 className={
@@ -180,7 +177,7 @@ class ReferenceServices extends React.Component {
            {isCreate ? 'Créer' : 'Mettre à jour'}
           </Button>
           <Button
-            color={isCreate ? 'secondary' : 'danger'}
+            color='danger'
             disabled={isCreate ? true : false}
             round
           >
